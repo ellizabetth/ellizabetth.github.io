@@ -19,6 +19,7 @@
       padding: 40px;
       display: flex;
       justify-content: space-between;
+      border-bottom: 1px solid #222;
     }
 
     h1, h2 {
@@ -50,6 +51,36 @@
       padding: 10px 20px;
       margin-right: 10px;
       display: inline-block;
+      position: relative;
+    }
+
+    .btn:hover {
+      background: #A67C52;
+      color: #0D0D0D;
+    }
+
+    /* Smooth transitions */
+    * {
+      transition: all 0.3s ease;
+    }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Subtle section hover */
+    .section:hover {
+      background: rgba(255,255,255,0.02);
     }
   </style>
 </head>
@@ -61,7 +92,7 @@
   <div>AI • Math • Projects</div>
 </header>
 
-<section class="hero">
+<section class="hero fade-in">
   <h1>Artificial Intelligence & Mathematics</h1>
   <p>Developing intelligent systems and solving complex, high-impact problems.</p>
 
@@ -69,22 +100,22 @@
   <a class="btn" href="#">Contact</a>
 </section>
 
-<section class="section">
+<section class="section fade-in">
   <h2>About</h2>
   <p>
-  I am a student focused on artificial intelligence, mathematics, and interdisciplinary problem-solving.
-  My work combines analytical thinking with creative approaches across technology and the arts.
+    I am a student focused on artificial intelligence, mathematics, and interdisciplinary problem-solving.
+    My work combines analytical thinking with creative approaches across technology and the arts.
   </p>
 </section>
 
-<section class="section">
+<section class="section fade-in">
   <h2>Projects</h2>
   <p><strong>AI Project</strong><br>
   Developed a machine learning model for data analysis and prediction.<br>
   Technologies: Python, Machine Learning</p>
 </section>
 
-<section class="section">
+<section class="section fade-in">
   <h2>Competitions</h2>
   <p>
   Mathematics — Competition Winner<br>
@@ -93,7 +124,7 @@
   </p>
 </section>
 
-<section class="section">
+<section class="section fade-in">
   <h2>Publications</h2>
   <p>Coming soon...</p>
 </section>
