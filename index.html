@@ -10,203 +10,239 @@
 <style>
 body {
   margin: 0;
-  background: #1C1C1E;
-  color: #F2F2F7;
+  background: linear-gradient(180deg, #F5F5F7 0%, #EAF2FF 100%);
+  color: #1D1D1F;
   font-family: 'Inter', sans-serif;
-  animation: open 1s ease;
+  overflow-x: hidden;
 }
 
-/* OPEN ANIMATION */
-@keyframes open {
-  from {
-    transform: scale(0.96);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+/* MENU */
+.menu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
 }
 
-/* LAYOUT */
-.container {
+.sidebar {
+  position: fixed;
+  right: -300px;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: white;
+  padding: 40px;
+  transition: 0.4s;
+}
+
+.sidebar a {
+  display: block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: black;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+/* HERO */
+.hero {
   display: flex;
-  min-height: 100vh;
+  padding: 100px 80px;
+  align-items: center;
 }
 
-/* LEFT IMAGE */
-.left {
-  flex: 1;
-  background: url('https://via.placeholder.com/800x1000') center/cover no-repeat;
+/* BADGE */
+.badge {
+  width: 280px;
+  height: 400px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+  transform: rotate(-5deg);
+  overflow: hidden;
 }
 
-/* RIGHT SIDE */
-.right {
-  flex: 1;
-  padding: 60px;
+.badge img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
 }
 
-/* NAME */
+.badge-info {
+  padding: 15px;
+  background: linear-gradient(90deg, #EAF2FF, #FFF9DB);
+}
+
+/* TEXT */
+.hero-text {
+  margin-left: 60px;
+}
+
 h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  margin-bottom: 10px;
+  font-size: 56px;
 }
 
-/* SUBTITLE */
-.subtitle {
-  color: #A1A1A6;
-  margin-bottom: 20px;
-  line-height: 1.4;
-}
-
-/* CONTACT */
-.contact a {
+.links a {
   display: block;
-  color: #A67C52;
-  margin-bottom: 6px;
-  text-decoration: none;
+  margin-top: 10px;
+  color: #3A5BFF;
 }
 
-.contact a:hover {
-  opacity: 0.7;
-}
-
-/* SECTION */
+/* SECTIONS */
 .section {
-  margin-top: 50px;
+  padding: 80px;
 }
 
-/* CARDS */
 .card {
-  border: 1px solid #2C2C2E;
+  background: white;
+  border-radius: 15px;
   padding: 20px;
-  margin-top: 15px;
-  transition: all 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
-.card:hover {
-  background: rgba(255,255,255,0.04);
-  transform: translateY(-3px);
+/* SCROLL ANIMATION */
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s;
 }
 
-/* GALLERY */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 15px;
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.gallery img {
-  width: 100%;
-  height: 110px;
-  object-fit: cover;
-  transition: 0.3s;
+/* HORIZONTAL GALLERY */
+.horizontal {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
 }
 
-.gallery img:hover {
-  transform: scale(1.05);
-  opacity: 0.8;
-}
-
-/* RESPONSIVE (очень важно) */
-@media (max-width: 900px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .left {
-    height: 300px;
-  }
+.horizontal img {
+  height: 200px;
+  border-radius: 12px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="menu" onclick="toggleMenu()">☰</div>
 
-<!-- LEFT PHOTO -->
-<div class="left"></div>
-
-<!-- RIGHT CONTENT -->
-<div class="right">
-
-<h1>Elizabeth Labazanova</h1>
-
-<div class="subtitle">
-Future AI & Business Leader | IBM AI Certified | Passionate About Innovation
+<div class="sidebar" id="sidebar">
+<a href="#">About</a>
+<a href="#">Portfolio</a>
+<a href="#">Certificates</a>
+<a href="#">Gallery</a>
+<a href="#">Contact</a>
 </div>
 
-<div class="contact">
-<a href="#">Instagram</a>
-<a href="#">LinkedIn</a>
-<a href="https://www.credly.com/users/elizaveta-labazanova">Certificates (Credly)</a>
+<!-- HERO -->
+<div class="hero">
+
+<div class="badge">
+<img src="photo.jpg">
+<div class="badge-info">
+<strong>Elizabeth Labazanova</strong><br>
+AI Specialist
+</div>
 </div>
 
-<div class="section">
+<div class="hero-text">
+<h1>AI & Business</h1>
+
+<p>Future AI & Business Leader | IBM AI Certified | Passionate About Innovation</p>
+
+<div class="links">
+<a href="https://www.instagram.com/ellizabetthi/">Instagram</a>
+<a href="https://www.linkedin.com/in/elizaveta-labazanova-438123390/">LinkedIn</a>
+<a href="mailto:jikitoles@gmail.com">jikitoles@gmail.com</a>
+</div>
+
+</div>
+
+</div>
+
+<!-- ABOUT -->
+<div class="section fade">
 <h2>About</h2>
 <p>
-AI Training Specialist focused on machine learning, data annotation, and intelligent systems development.
+AI Training Specialist working with machine learning, data annotation and intelligent systems.
 </p>
 </div>
 
-<div class="section">
+<!-- EXPERIENCE -->
+<div class="section fade">
 <h2>Experience</h2>
 
 <div class="card">
 <strong>AI Training Specialist — Data Light</strong><br>
 Mar 2026 – Present<br><br>
 
-• Annotated video data for object detection and behavior recognition<br>
-• Maintained 95%+ accuracy in labeling tasks<br>
-• Improved AI model performance through high-quality data<br>
-• Worked with large datasets and strict quality standards
+• Annotated video data for ML models<br>
+• Maintained 95%+ accuracy<br>
+• Improved model performance<br>
+• Worked with large datasets
 </div>
 
 </div>
 
-<div class="section">
+<!-- PROJECTS -->
+<div class="section fade">
 <h2>Projects</h2>
 
 <div class="card">
-<strong>AI Model Project</strong><br>
-Developed a machine learning model for prediction and data analysis.<br>
-Technologies: Python, Machine Learning
+AI Model Project<br>
+Machine learning model for prediction and analysis.
 </div>
 
 </div>
 
-<div class="section">
+<!-- CERTIFICATES -->
+<div class="section fade">
 <h2>Certificates</h2>
 
-<p>Verified achievements on Credly:</p>
-
-<div class="gallery">
-<img src="https://via.placeholder.com/150">
-<img src="https://via.placeholder.com/150">
-<img src="https://via.placeholder.com/150">
-</div>
+<p>View all:</p>
+<a href="https://www.credly.com/users/elizaveta-labazanova">Credly Profile</a>
 
 </div>
 
-<div class="section">
-<h2>Activity</h2>
+<!-- GALLERY -->
+<div class="section fade">
+<h2>Gallery</h2>
 
-<div class="gallery">
-<img src="https://via.placeholder.com/150">
-<img src="https://via.placeholder.com/150">
-<img src="https://via.placeholder.com/150">
+<div class="horizontal">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
 </div>
 
-<p>Volunteer eco expedition — Elbrus cleanup</p>
+<p>Elbrus eco expedition and activities</p>
 
 </div>
 
-</div>
+<script>
+function toggleMenu() {
+  document.getElementById("sidebar").classList.toggle("active");
+}
 
-</div>
+const elements = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+  elements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100) {
+      el.classList.add('show');
+    }
+  });
+});
+</script>
 
 </body>
 </html>
