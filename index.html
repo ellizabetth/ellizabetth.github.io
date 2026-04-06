@@ -12,31 +12,30 @@ body {
   background: linear-gradient(180deg, #F5F5F7, #EAF2FF);
   font-family: 'Inter', sans-serif;
   color: #1D1D1F;
-  overflow-x: hidden;
 }
 
-/* MENU BUTTON */
+/* MENU */
 .menu {
   position: fixed;
   top: 20px;
   right: 20px;
   font-size: 30px;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 2000;
 }
 
 /* SIDEBAR */
 .sidebar {
   position: fixed;
-  right: -320px;
   top: 0;
-  width: 300px;
+  right: -100%;
+  width: 260px;
   height: 100%;
   background: white;
   padding: 40px;
   transition: 0.4s;
   box-shadow: -10px 0 30px rgba(0,0,0,0.05);
-  z-index: 999;
+  z-index: 1500;
 }
 
 .sidebar.active {
@@ -45,9 +44,8 @@ body {
 
 .sidebar a {
   display: block;
-  margin: 15px 0;
-  text-decoration: none;
-  color: #1D1D1F;
+  margin: 20px 0;
+  cursor: pointer;
 }
 
 /* HERO */
@@ -57,10 +55,9 @@ body {
   align-items: center;
 }
 
-/* BADGE */
 .badge {
-  width: 280px;
-  height: 400px;
+  width: 260px;
+  height: 380px;
   background: white;
   border-radius: 20px;
   box-shadow: 0 30px 60px rgba(0,0,0,0.1);
@@ -79,93 +76,54 @@ body {
   background: linear-gradient(90deg, #EAF2FF, #FFF9DB);
 }
 
-/* TEXT */
 .hero-text {
   margin-left: 60px;
 }
 
 h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display';
   font-size: 56px;
-}
-
-/* SECTIONS */
-.section {
-  padding: 80px;
-}
-
-/* CARDS */
-.card {
-  background: white;
-  border-radius: 15px;
-  padding: 20px;
-  margin-top: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-/* SCROLL ANIMATION */
-.fade {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 1s;
-}
-
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* MODAL */
 .modal {
   display: none;
   position: fixed;
-  z-index: 2000;
+  z-index: 3000;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.4);
 }
 
-/* POPUP */
 .modal-content {
   background: white;
+  width: 400px;
+  max-height: 80%;
+  overflow-y: auto;
   margin: 10% auto;
   padding: 30px;
-  width: 320px;
   border-radius: 20px;
-  text-align: center;
   animation: popup 0.4s ease;
 }
 
 @keyframes popup {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+  from {opacity:0; transform:scale(0.9);}
+  to {opacity:1; transform:scale(1);}
 }
 
-.modal-content a {
+.close {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.modal a {
   display: block;
   margin-top: 10px;
   color: #3A5BFF;
 }
 
-.close {
-  cursor: pointer;
-  float: right;
-  font-size: 22px;
-}
-
-/* GALLERY */
-.gallery-modal img {
+img.gallery {
   width: 100%;
   margin-top: 10px;
   border-radius: 10px;
@@ -178,15 +136,14 @@ h1 {
 <div class="menu" onclick="toggleMenu()">☰</div>
 
 <div class="sidebar" id="sidebar">
-<a href="#" onclick="toggleMenu()">About</a>
-<a href="#" onclick="toggleMenu()">Portfolio</a>
-<a href="#" onclick="openGallery(); toggleMenu()">Gallery</a>
-<a href="#" onclick="openContact(); toggleMenu()">Contact</a>
+<a onclick="openModal('about')">About</a>
+<a onclick="openModal('projects')">Portfolio</a>
+<a onclick="openModal('gallery')">Gallery</a>
+<a onclick="openModal('contact')">Contact</a>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-
 <div class="badge">
 <img src="photo.jpg">
 <div class="badge-info">
@@ -199,45 +156,13 @@ AI Specialist
 <h1>AI & Business</h1>
 <p>Future AI & Business Leader | IBM AI Certified</p>
 </div>
-
 </div>
 
-<!-- EXPERIENCE -->
-<div class="section fade">
-<h2>Experience</h2>
-<div class="card">
-AI Training Specialist — Data Light<br>
-95%+ accuracy, ML datasets, AI models
-</div>
-</div>
-
-<!-- PROJECTS -->
-<div class="section fade">
-<h2>Projects</h2>
-<div class="card">
-AI Model for prediction and analysis
-</div>
-</div>
-
-<!-- CONTACT MODAL -->
-<div id="contactModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeContact()">×</span>
-    <h2>Contact</h2>
-    <a href="mailto:jikitoles@gmail.com">Email</a>
-    <a href="https://www.instagram.com/ellizabetthi/">Instagram</a>
-    <a href="https://www.linkedin.com/in/elizaveta-labazanova-438123390/">LinkedIn</a>
-  </div>
-</div>
-
-<!-- GALLERY MODAL -->
-<div id="galleryModal" class="modal">
-  <div class="modal-content gallery-modal">
-    <span class="close" onclick="closeGallery()">×</span>
-    <h2>Gallery</h2>
-    <img src="photo1.jpg">
-    <img src="photo2.jpg">
-    <img src="photo3.jpg">
+<!-- UNIVERSAL MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content" id="modalContent">
+    <span class="close" onclick="closeModal()">×</span>
+    <div id="modalBody"></div>
   </div>
 </div>
 
@@ -246,46 +171,57 @@ function toggleMenu() {
   document.getElementById("sidebar").classList.toggle("active");
 }
 
-function openContact() {
-  document.getElementById("contactModal").style.display = "block";
+function openModal(type) {
+  toggleMenu();
+
+  let content = "";
+
+  if(type === "about") {
+    content = `
+    <h2>About</h2>
+    <p>AI Training Specialist focused on ML, data annotation and intelligent systems.</p>
+    `;
+  }
+
+  if(type === "projects") {
+    content = `
+    <h2>Projects</h2>
+    <p>AI Model for prediction and analysis.</p>
+    `;
+  }
+
+  if(type === "gallery") {
+    content = `
+    <h2>Gallery</h2>
+    <img class="gallery" src="photo1.jpg">
+    <img class="gallery" src="photo2.jpg">
+    <img class="gallery" src="photo3.jpg">
+    `;
+  }
+
+  if(type === "contact") {
+    content = `
+    <h2>Contact</h2>
+    <a href="mailto:jikitoles@gmail.com">Email</a>
+    <a href="https://www.instagram.com/ellizabetthi/">Instagram</a>
+    <a href="https://www.linkedin.com/in/elizaveta-labazanova-438123390/">LinkedIn</a>
+    `;
+  }
+
+  document.getElementById("modalBody").innerHTML = content;
+  document.getElementById("modal").style.display = "block";
 }
 
-function closeContact() {
-  document.getElementById("contactModal").style.display = "none";
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
 }
 
-function openGallery() {
-  document.getElementById("galleryModal").style.display = "block";
-}
-
-function closeGallery() {
-  document.getElementById("galleryModal").style.display = "none";
-}
-
-/* CLOSE ON CLICK OUTSIDE */
 window.onclick = function(event) {
-  let contact = document.getElementById("contactModal");
-  let gallery = document.getElementById("galleryModal");
-
-  if (event.target == contact) {
-    contact.style.display = "none";
-  }
-  if (event.target == gallery) {
-    gallery.style.display = "none";
+  let modal = document.getElementById("modal");
+  if(event.target == modal) {
+    modal.style.display = "none";
   }
 }
-
-/* SCROLL ANIMATION */
-const elements = document.querySelectorAll('.fade');
-
-window.addEventListener('scroll', () => {
-  elements.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if(top < window.innerHeight - 100) {
-      el.classList.add('show');
-    }
-  });
-});
 </script>
 
 </body>
